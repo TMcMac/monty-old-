@@ -1,5 +1,5 @@
-#ifndef PIESLESUDOMINE_H
-#define PIESLESUDOMINE_H
+#ifndef MONTY_H
+#define MONTY_H
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
