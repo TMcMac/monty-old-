@@ -12,9 +12,10 @@ int main(int argc, char **argv)
 	FILE *stream;
 	char *line;
 	size_t len = 60;
-	char *arg;
+	char *arg[10];
 	ssize_t nread = 0;
-	int linecount = 1;
+	unsigned int line_number = 0;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
@@ -37,17 +38,18 @@ int main(int argc, char **argv)
 		nread = getline(&line, &len, stream);
 		if (nread != -1)
 		{
-			printf("Line %d : %s", linecount, line);
-			arg = strtok(line, " ");
+			line_number++;
+			printf("Line %d : %s", line_number, line);
+			(*arg) = strtok(line, " ");
+			printf("STRTOK WORKS\n");
+			opcode_comp((*arg), &stack, line_number);
+			printf("OPCODE DOESNT\n");
+			printf("ARG?: %s\n", *arg);
 			/* Arg is our array of args, tokenized by strtok */
 			/* We need to send arg array to an  execution function and return a 0/-1 success/fail */
-			while (arg != NULL)
-			{
-				printf("Arg: %s\n", arg);
-				arg = strtok(NULL, " \t");
-			}
+			printf("Arg: %s\n", (*arg));
 		}
-		linecount++;
+		(*arg) = strtok(NULL, " \t");
 	}
 
 
