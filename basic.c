@@ -9,7 +9,7 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newtop;
-	(void) unsigned int line_number;
+	(void) line_number;
 
 	newtop = malloc(sizeof(stack_t) * 1);
 	if (newtop == NULL)
@@ -23,6 +23,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->prev = NULL;
 		newtop->n = 0 /*NEED N FROM ARGS, GLOBAL VAR?*/;
 		(*stack) = newtop;
+		printf("NEW FIRST NODE\n");
 	}
 	else
 	{
@@ -31,6 +32,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->next = NULL;
 		newtop->n = 0 /*NEED N FROM ARGS*/;
 		(*stack) = newtop;
+		printf("NEW TOP NODE\n");
 	}
 	return;
 }
@@ -43,9 +45,10 @@ void _push(stack_t **stack, unsigned int line_number)
 
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *mover;
-	int sum;
-	(void) unsigned int line_number;
+	stack_t *mover = *stack;
+/**	int sum;
+ */
+	(void) line_number;
 
 	if ((*stack) == NULL)
 	{
@@ -55,7 +58,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 	{
 		while (mover != NULL)
 		{
-			printf("%d\n", mover->n);
+			printf("I AM PALLing: %d\n", mover->n);
 			mover = mover->prev;
 		}
 	}
@@ -73,5 +76,9 @@ void _pint(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty", line_number);
 		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		printf("%d\n", (*stack)->n);
 	}
 }
