@@ -35,4 +35,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void (*opcode_comp(char *arg, unsigned int line_number))(stack_t **, unsigned int);
+void pall_func(stack_t **stack, unsigned int line_number);
+
 #endif
