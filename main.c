@@ -34,30 +34,27 @@ int main(int argc, char **argv)
 	}
 	/* If we have a file and we can open it we malloc our line to hold input from get line */
 	line = malloc(sizeof(char) * 60);
-	while (nread != -1)
+	while ((nread = getline(&line, &len, stream) != -1))
 	{
-		nread = getline(&line, &len, stream);
-		if (nread != -1)
-		{
+		/* nread = getline(&line, &len, stream); */
+		/* if (nread != -1)
+		   {*/
 			line_number++;
 			arg = strtok(line, delimit);
-			opcode_comp(arg, &stack, line_number);
-			while (arg != NULL)
+			if (arg)
 			{
+				opcode_comp(arg, &stack, line_number);
+			}
+			/*	while (arg != NULL)
+				{*/
 				printf("Arg: %s\n", arg);
 				arg = strtok(NULL, delimit);
 				printf("ARG AFTER NULL %s\n", arg);
-			}
-			/* Arg is our array of args, tokenized by strtok */
-			/* We need to send arg array to an  execution function and return a 0/-1 success/fail */
-		}
-
 	}
-
-	printf("OUT OF LOOPS\n");
+			/* Arg is our array of args, tokenized by strtok */
+	printf("BEFORE FREED LINE\n");			/* We need to send arg array to an  execution function and return a 0/-1 success/fail */
 	free(line);
-	printf("LINE FREED \n");
+	printf("BEFORE CLOSED STREAM\n");
 	fclose(stream);
-	printf("STREAM CLOSED \n");
 	return (0);
 }
