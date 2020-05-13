@@ -12,10 +12,11 @@ int main(int argc, char **argv)
 	FILE *stream;
 	char *line;
 	size_t len = 60;
-	char *arg[10];
+	char *arg;
 	ssize_t nread = 0;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
+	char delimit[] =" \t\r\n\v\f";
 
 	if (argc != 2)
 	{
@@ -39,21 +40,24 @@ int main(int argc, char **argv)
 		if (nread != -1)
 		{
 			line_number++;
-			printf("Line %d : %s", line_number, line);
-			(*arg) = strtok(line, " ");
-			printf("STRTOK WORKS\n");
-			opcode_comp((*arg), &stack, line_number);
-			printf("OPCODE DOESNT\n");
-			printf("ARG?: %s\n", *arg);
+			arg = strtok(line, delimit);
+			opcode_comp(arg, &stack, line_number);
+			while (arg != NULL)
+			{
+				printf("Arg: %s\n", arg);
+				arg = strtok(NULL, delimit);
+				printf("ARG AFTER NULL %s\n", arg);
+			}
 			/* Arg is our array of args, tokenized by strtok */
 			/* We need to send arg array to an  execution function and return a 0/-1 success/fail */
-			printf("Arg: %s\n", (*arg));
 		}
-		(*arg) = strtok(NULL, " \t");
+
 	}
 
-
+	printf("OUT OF LOOPS\n");
 	free(line);
+	printf("LINE FREED \n");
 	fclose(stream);
+	printf("STREAM CLOSED \n");
 	return (0);
 }
