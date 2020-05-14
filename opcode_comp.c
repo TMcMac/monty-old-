@@ -11,7 +11,8 @@
 void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
-	int j;
+	int j = 0, k = 0, neg = 0;
+	char num[11];
 	instruction_t opcodes[] = {
 		{"pall", _pall},
 		{"push", _push},
@@ -32,17 +33,22 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{
 			if (strcmp(opcodes[i].opcode, "push") == 0)
 			{
-				for (j = 0; j < 5; j++)
-					;
-				while (arg[j] == 32)
+				while (isdigit(arg[j]) < 1 && arg[j] != 45)
 					j++;
-				if (isdigit(arg[j]) > 0)
-					Ni = (arg[j] - 48);
-				else
+				if (arg[j] == 45)
 				{
-					fprintf(stderr, "L%d: usage: push integer\n", line_number);
-					exit(EXIT_FAILURE);
+					neg = 1;
+					j++;
 				}
+				while (arg[j] > 47 && arg[j] < 58 && k < 11)
+				{
+					num[k] = (arg[j]);
+					k++;
+					j++;
+				}
+				Ni = atoi(num);
+				if (neg == 1)
+					Ni *= -1;
 			}
 			opcodes[i].f(stack, line_number);
 			return;
