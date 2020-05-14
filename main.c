@@ -10,6 +10,7 @@ int Ni;
 
 int main(int argc, char **argv)
 {
+	int status;
 	FILE *stream;
 	char *line;
 	size_t len = 60;
@@ -37,6 +38,7 @@ int main(int argc, char **argv)
 	if (line == NULL)
 	{
 		free(line);
+		fclose(stream);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -45,10 +47,15 @@ int main(int argc, char **argv)
 		line_number++;
 		arg = strtok(line, delimit);
 		if (arg)
-			opcode_comp(arg, &stack, line_number);
+			status = opcode_comp(arg, &stack, line_number);
 		arg = strtok(NULL, delimit);
+		if (status == -1)
+			break;
 	}
+	clean(&stack);
 	free(line);
 	fclose(stream);
+	if (status == -1)
+		exit(EXIT_FAILURE);
 	return (0);
 }
