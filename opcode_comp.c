@@ -16,10 +16,9 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{"pall", _pall},
 		{"push", _push},
 		{"pint", _pint},
-		/*
-		 *  {"pop", pop},
-		 * {"add", add},
-		 * {"swap", swap},
+	        {"pop", _pop},
+		{"add", _add},
+		/* {"swap", swap},
 		 * {"nop", nop},
 		 * {"sub", sub},
 		 * {"div", div},
