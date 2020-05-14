@@ -33,8 +33,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->n = Ni;
 		(*stack) = newtop;
 	}
-/*	if (newtop)
-	free(newtop); */
 }
 
 /**
