@@ -27,12 +27,12 @@ int main(int argc, char **argv)
 	}
 	/* If we have the correct number of args we will need to open the file */
 	stream = fopen(argv[1], "r");
-	/* if (access(*stream, X_OK) == -1)
+	if (access((const char *)argv[1], R_OK) == -1)
 	{
 		fclose(stream);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
-		} */
+	}
 	if (stream == NULL)
 	{
 		fclose(stream);
