@@ -33,8 +33,8 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->n = Ni;
 		(*stack) = newtop;
 	}
-	if (newtop)
-		free(newtop);
+/*	if (newtop)
+	free(newtop); */
 }
 
 /**
@@ -48,19 +48,13 @@ void _pall(stack_t **stack, unsigned int line_number)
 	stack_t *mover = *stack;
 	(void) line_number;
 
-	if ((*stack) == NULL || stack == NULL)
+	while (mover != NULL)
 	{
-		;
-	}
-	else
-	{
-		while (mover != NULL)
-		{
-			printf("%d\n", mover->n);
-			mover = mover->prev;
-		}
+		printf("%d\n", mover->n);
+		mover = mover->prev;
 	}
 }
+
 /**
  * _pint - a fuction to print the top node's n value
  * @stack: a pointer to the top of our stack

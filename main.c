@@ -10,6 +10,7 @@ int Ni;
 
 int main(int argc, char **argv)
 {
+	int status;
 	FILE *stream;
 	char *line, *arg;
 	size_t len = 60;
@@ -45,14 +46,19 @@ int main(int argc, char **argv)
 		line_number++;
 		arg = strtok(line, delimit);
 		if (arg)
-			opcode_comp(arg, &stack, line_number);
+			status = opcode_comp(arg, &stack, line_number);
 		arg = strtok(NULL, delimit);
-		free(line);
-		fclose(stream);
+    
+		if (status == -1)
+			break;
 	}
+	clean(&stack);
 	if (line)
 		free(line);
 	if (stream)
 		fclose(stream);
+  if (status == -1)
+		exit(EXIT_FAILURE);
+
 	return (0);
 }
