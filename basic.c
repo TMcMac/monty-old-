@@ -5,6 +5,7 @@
  * @stack: a pointer to the top of our stack
  * @line_number: the line number for the opcode that call this
  */
+int Ni;
 
 void _push(stack_t **stack, unsigned int line_number)
 {
@@ -21,7 +22,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		newtop->next = NULL;
 		newtop->prev = NULL;
-		newtop->n = 0 /*NEED N FROM ARGS, GLOBAL VAR?*/;
+		newtop->n = Ni;
 		(*stack) = newtop;
 		printf("NEW FIRST NODE\n");
 	}
@@ -30,7 +31,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		(*stack)->next = newtop;
 		newtop->prev = (*stack);
 		newtop->next = NULL;
-		newtop->n = 0 /*NEED N FROM ARGS*/;
+		newtop->n = Ni;
 		(*stack) = newtop;
 		printf("NEW TOP NODE\n");
 	}

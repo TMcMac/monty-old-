@@ -11,7 +11,7 @@
 void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
-	/* int Ni = 0; */
+	int j;
        	instruction_t opcodes[] = {
 		{"pall", _pall},
 	       	{"push", _push},
@@ -27,20 +27,21 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		*/
 		{NULL, NULL}
 	};
+	printf("THIS IS Ni: %d\n", Ni);
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcodes[i].opcode, arg) == 0)
 		{
-			/* if (strcmp(opcodes[i].opcode, "push") == 0)
+			if (strcmp(opcodes[i].opcode, "push") == 0)
 			{
-				printf("AM I IN SECOND STRCMP");
-				arg++;
-				if (isdigit(arg) > 0)
+				printf("AM I IN SECOND STRCMP\n");
+				while (isdigit(arg[j]) < 1)
 				{
-					Ni = atoi(arg);
+					j++;
 				}
+				Ni = (arg[j] - 48);
 				printf("Ni = %d\n", Ni);
-				} */
+			}
 			opcodes[i].f(stack, line_number);
 			return;
 		}

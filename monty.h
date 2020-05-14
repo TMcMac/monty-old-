@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 
+extern int Ni; /* Global Variable for int argument */
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -36,7 +37,6 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
 
 void opcode_comp(char *arg, stack_t **stack,  unsigned int line_number);
 void _push(stack_t **stack, unsigned int line_number);
