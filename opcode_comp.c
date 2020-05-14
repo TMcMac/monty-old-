@@ -12,18 +12,18 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 	int j;
-       	instruction_t opcodes[] = {
+	instruction_t opcodes[] = {
 		{"pall", _pall},
-	       	{"push", _push},
+		{"push", _push},
 		{"pint", _pint},
-/**
-		{"pop", pop},
-		{"add", add},
-		{"swap", swap},
-		{"nop", nop},
-		{"sub", sub},
-		{"div", div},
-		{"mul", mul},
+		/*
+		 *  {"pop", pop},
+		 * {"add", add},
+		 * {"swap", swap},
+		 * {"nop", nop},
+		 * {"sub", sub},
+		 * {"div", div},
+		 * {"mul", mul},
 		*/
 		{NULL, NULL}
 	};
@@ -46,6 +46,6 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 			return;
 		}
 	}
-       			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, arg);
-			exit(EXIT_FAILURE);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, arg);
+	exit(EXIT_FAILURE);
 }
