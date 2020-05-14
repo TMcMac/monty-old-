@@ -1,10 +1,10 @@
 #include "monty.h"
 
-#define STDERR FILENO_STDERR
 /**
- *
- *
- *
+ * main - the main function for out monty code interpreter
+ * @argc: the number of args we take in, must be two
+ * @argv: an array of arguments, program name and file name
+ * Return: 0 for success
  */
 
 int main(int argc, char **argv)
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	ssize_t nread = 0;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
-	char delimit[] =" \t\r\n\v\f";
+	char delimit[] = " \t\r\n\v\f";
 
 	if (argc != 2)
 	{
@@ -28,33 +28,19 @@ int main(int argc, char **argv)
 	stream = fopen(argv[1], "r");
 	if (stream == NULL)
 	{
-		/* if we cannot open the file for any reason we error */
 		fprintf(stderr, "Error: Can't open file <%s>\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	/* If we have a file and we can open it we malloc our line to hold input from get line */
 	line = malloc(sizeof(char) * 60);
 	while ((nread = getline(&line, &len, stream) != -1))
 	{
-		/* nread = getline(&line, &len, stream); */
-		/* if (nread != -1)
-		   {*/
-			line_number++;
-			arg = strtok(line, delimit);
-			if (arg)
-			{
-				opcode_comp(arg, &stack, line_number);
-			}
-			/*	while (arg != NULL)
-				{*/
-				printf("Arg: %s\n", arg);
-				arg = strtok(NULL, delimit);
-				printf("ARG AFTER NULL %s\n", arg);
+		line_number++;
+		arg = strtok(line, delimit);
+		if (arg)
+			opcode_comp(arg, &stack, line_number);
+		arg = strtok(NULL, delimit);
 	}
-			/* Arg is our array of args, tokenized by strtok */
-	printf("BEFORE FREED LINE\n");			/* We need to send arg array to an  execution function and return a 0/-1 success/fail */
 	free(line);
-	printf("BEFORE CLOSED STREAM\n");
 	fclose(stream);
 	return (0);
 }
