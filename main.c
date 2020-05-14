@@ -12,9 +12,8 @@ int main(int argc, char **argv)
 {
 	int status;
 	FILE *stream;
-	char *line;
+	char *line, *arg;
 	size_t len = 60;
-	char *arg;
 	ssize_t nread = 0;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
@@ -28,10 +27,16 @@ int main(int argc, char **argv)
 	}
 	/* If we have the correct number of args we will need to open the file */
 	stream = fopen(argv[1], "r");
+	/* if (access(*stream, X_OK) == -1)
+	{
+		fclose(stream);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+		} */
 	if (stream == NULL)
 	{
 		fclose(stream);
-		fprintf(stderr, "Error: Can't open file <%s>\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	line = malloc(sizeof(char) * 60);
@@ -53,9 +58,12 @@ int main(int argc, char **argv)
 			break;
 	}
 	clean(&stack);
-	free(line);
-	fclose(stream);
+	if (line)
+		free(line);
+	if (stream)
+		fclose(stream);
 	if (status == -1)
 		exit(EXIT_FAILURE);
+
 	return (0);
 }

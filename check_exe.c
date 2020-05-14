@@ -14,7 +14,6 @@ int check_exe(stack_t **stack, unsigned int line_number, char *opcode)
 {
 	int status;
 
-	printf("We are in Check Exe\n");
 	if (strcmp(opcode, "pint") == 0)
 		if ((*stack) == NULL || stack == NULL)
 		{
@@ -28,8 +27,8 @@ int check_exe(stack_t **stack, unsigned int line_number, char *opcode)
 		{
 			fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 			status = -1;
-		} 
-		else 
+		}
+		else
 		{
 			status = 0;
 		}
@@ -38,7 +37,7 @@ int check_exe(stack_t **stack, unsigned int line_number, char *opcode)
 		{
 			fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 			status = -1;
-		} 
+		}
 		else
 			status = 0;
 	else if (strcmp(opcode, "pall") == 0 || strcmp(opcode, "nop") == 0)

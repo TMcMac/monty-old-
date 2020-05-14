@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * _add - adds top two nodes in stack
+ * @stack: pointer to top node in stack
+ * @line_number: line count for given file
+ */
+
 void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;

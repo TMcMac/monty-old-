@@ -8,17 +8,16 @@
 void clean(stack_t **stack)
 {
 	stack_t *tmp;
+
 	if (stack == NULL)
-		;
-	else
+		return;
+
+	while ((*stack) != NULL)
 	{
 		tmp = (*stack);
-		while ((*stack) != NULL)
-		{
-			(*stack) = (*stack)->prev;
+		(*stack) = (*stack)->prev;
+		if (tmp)
 			free(tmp);
-			tmp = (*stack);
-		}
-		free(stack);
 	}
+	free(*stack);
 }

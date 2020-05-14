@@ -1,0 +1,6 @@
+push 8
+push           12
+pall 11
+push      6
+push         0
+pall
