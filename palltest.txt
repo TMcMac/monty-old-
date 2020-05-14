@@ -1,1 +1,2 @@
-pall 12
+pall
+
