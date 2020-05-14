@@ -1,4 +1,5 @@
 #include "monty.h"
+int Ni;
 
 /**
  * main - the main function for out monty code interpreter
