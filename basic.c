@@ -5,7 +5,7 @@
  * @stack: a pointer to the top of our stack
  * @line_number: the line number for the opcode that call this
  */
-int Ni;
+
 
 void _push(stack_t **stack, unsigned int line_number)
 {
@@ -24,7 +24,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->prev = NULL;
 		newtop->n = Ni;
 		(*stack) = newtop;
-		printf("NEW FIRST NODE\n");
 	}
 	else
 	{
@@ -33,9 +32,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		newtop->next = NULL;
 		newtop->n = Ni;
 		(*stack) = newtop;
-		printf("NEW TOP NODE\n");
 	}
-	return;
 }
 
 /**
@@ -51,22 +48,21 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	if ((*stack) == NULL)
 	{
-		return;
+		;
 	}
 	else
 	{
 		while (mover != NULL)
 		{
-			printf("I AM PALLing: %d\n", mover->n);
+			printf("%d\n", mover->n);
 			mover = mover->prev;
 		}
 	}
-	return;
 }
-
 /**
- * 
- *
+ * _pint - a fuction to print the top node's n value
+ * @stack: a pointer to the top of our stack
+ * @line_number: our line number for this command
  */
 
 void _pint(stack_t **stack, unsigned int line_number)
