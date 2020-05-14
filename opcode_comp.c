@@ -16,10 +16,10 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{"pall", _pall},
 		{"push", _push},
 		{"pint", _pint},
-	        {"pop", _pop},
+	  {"pop", _pop},
 		{"add", _add},
+    {"nop", nop},
 		/* {"swap", swap},
-		 * {"nop", nop},
 		 * {"sub", sub},
 		 * {"div", div},
 		 * {"mul", mul},
@@ -32,11 +32,17 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{
 			if (strcmp(opcodes[i].opcode, "push") == 0)
 			{
-				while (isdigit(arg[j]) < 1)
-				{
+				for (j = 0; j < 5; j++)
+					;
+				while (arg[j] == 32)
 					j++;
+				if (isdigit(arg[j]) > 0)
+					Ni = (arg[j] - 48);
+				else
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", line_number);
+					exit(EXIT_FAILURE);
 				}
-				Ni = (arg[j] - 48);
 			}
 			opcodes[i].f(stack, line_number);
 			return;
