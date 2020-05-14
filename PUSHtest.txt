@@ -1,0 +1,10 @@
+push 0 Push 0 on to the stacks
+push 1 Push 1 on to the stacks
+
+
+push             8
+push      5
+
+
+push push push 4
+push 9

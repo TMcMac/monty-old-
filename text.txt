@@ -1,9 +1,0 @@
-push 8
-pop
-push 9 push push
-push                                       10
-
-
-
-
-pint

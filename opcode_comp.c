@@ -14,11 +14,13 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 	int j = 0, k = 0, neg = 0;
 	char num[11];
 	instruction_t opcodes[] = {
-		{"pall", _pall}, {"push", _push},
-		{"pint", _pint}, {"pop", _pop},
+		{"pall", _pall},
+		{"push", _push},
+		{"pint", _pint},
+		{"pop", _pop},
 		{"add", _add},
-/*		{"nop", _nop},
-		{"swap", swap},
+		{"nop", _nop},
+		/* {"swap", swap},
 		 * {"sub", sub},
 		 * {"div", div},
 		 * {"mul", mul},
