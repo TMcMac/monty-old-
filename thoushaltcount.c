@@ -10,6 +10,7 @@ void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
+	(void) line_number;
 
 	result = ((*stack)->n + mover->n);
 	mover->n = result;
@@ -29,6 +30,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
+	(void) line_number;
 
 	result = ((*stack)->n - mover->n);
 	mover->n = result;
@@ -47,6 +49,7 @@ void _div(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
+	(void) line_number;
 
 	result = (mover->n / (*stack)->n);
 	mover->n = result;
@@ -66,6 +69,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
+	(void) line_number;
 
 	result = ((*stack)->n * mover->n);
 	mover->n = result;
@@ -85,6 +89,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
+	(void) line_number;
 
 	result = (mover->n % (*stack)->n);
 	mover->n = result;
