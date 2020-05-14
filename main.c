@@ -11,9 +11,8 @@ int Ni;
 int main(int argc, char **argv)
 {
 	FILE *stream;
-	char *line;
+	char *line, *arg;
 	size_t len = 60;
-	char *arg;
 	ssize_t nread = 0;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
