@@ -1,9 +1,8 @@
-push 5
-push 5
-add
-push 10
-push 10
+push 500
+push 100
 pall
-sub
+div
 pall
-
+push 2
+mod
+pall
