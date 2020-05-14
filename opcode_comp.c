@@ -11,15 +11,14 @@
 void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
-	int j;
+	int j = 0, k = 0, neg = 0;
+	char num[11];
 	instruction_t opcodes[] = {
-		{"pall", _pall},
-		{"push", _push},
-		{"pint", _pint},
-	        {"pop", _pop},
+		{"pall", _pall}, {"push", _push},
+		{"pint", _pint}, {"pop", _pop},
 		{"add", _add},
-		/* {"swap", swap},
-		 * {"nop", nop},
+/*		{"nop", _nop},
+		{"swap", swap},
 		 * {"sub", sub},
 		 * {"div", div},
 		 * {"mul", mul},
@@ -32,11 +31,22 @@ void opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{
 			if (strcmp(opcodes[i].opcode, "push") == 0)
 			{
-				while (isdigit(arg[j]) < 1)
+				while (isdigit(arg[j]) < 1 && arg[j] != 45)
+					j++;
+				if (arg[j] == 45)
 				{
+					neg = 1;
 					j++;
 				}
-				Ni = (arg[j] - 48);
+				while (arg[j] > 47 && arg[j] < 58 && k < 11)
+				{
+					num[k] = (arg[j]);
+					k++;
+					j++;
+				}
+				Ni = atoi(num);
+				if (neg == 1)
+					Ni *= -1;
 			}
 			opcodes[i].f(stack, line_number);
 			return;
