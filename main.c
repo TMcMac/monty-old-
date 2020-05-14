@@ -27,10 +27,16 @@ int main(int argc, char **argv)
 	}
 	/* If we have the correct number of args we will need to open the file */
 	stream = fopen(argv[1], "r");
+	/* if (access(*stream, X_OK) == -1)
+	{
+		fclose(stream);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+		} */
 	if (stream == NULL)
 	{
 		fclose(stream);
-		fprintf(stderr, "Error: Can't open file <%s>\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	line = malloc(sizeof(char) * 60);
@@ -48,7 +54,6 @@ int main(int argc, char **argv)
 		if (arg)
 			status = opcode_comp(arg, &stack, line_number);
 		arg = strtok(NULL, delimit);
-    
 		if (status == -1)
 			break;
 	}
@@ -57,7 +62,7 @@ int main(int argc, char **argv)
 		free(line);
 	if (stream)
 		fclose(stream);
-  if (status == -1)
+	if (status == -1)
 		exit(EXIT_FAILURE);
 
 	return (0);
