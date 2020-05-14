@@ -29,10 +29,17 @@ int main(int argc, char **argv)
 	stream = fopen(argv[1], "r");
 	if (stream == NULL)
 	{
+		fclose(stream);
 		fprintf(stderr, "Error: Can't open file <%s>\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	line = malloc(sizeof(char) * 60);
+	if (line == NULL)
+	{
+		free(line);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	while ((nread = getline(&line, &len, stream) != -1))
 	{
 		line_number++;
