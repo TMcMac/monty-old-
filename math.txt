@@ -1,7 +1,11 @@
-push 500
+push 1
+push      2
+push    3
+push 4
+push    5
 pall
+add
+pall
+swap
 div
-pall
-push 2
-mod
 pall
