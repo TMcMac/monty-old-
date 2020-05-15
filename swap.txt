@@ -1,4 +1,0 @@
-push 98
-pall
-swap
-pall

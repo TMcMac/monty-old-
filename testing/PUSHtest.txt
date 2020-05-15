@@ -4,7 +4,7 @@ pall
 push 1-1
 push             8
 push      5
-
+pall
 
 push push push 4
 push 9
