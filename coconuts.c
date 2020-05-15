@@ -32,14 +32,11 @@ void _pop(stack_t **stack, unsigned int line_number)
  */
 void _swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = (*stack)->prev;
-	stack_t *last = tmp->prev;
+	int tmp = (*stack)->n;
+	stack_t *prev = (*stack)->prev;
 	(void) line_number;
 
-	last->next = (*stack);
-	tmp->prev = (*stack);
-	(*stack)->prev = last;
-	(*stack)->next = tmp;
-	tmp->next = NULL;
-	(*stack) = tmp;
+	(*stack)->n = prev->n;
+	prev->n = tmp;
+
 }
