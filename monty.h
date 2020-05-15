@@ -59,6 +59,11 @@ void _mod(stack_t **stack, unsigned int line_number);
 /* This function does nothing.... why does it exist? */
 void _nop(stack_t **stack, unsigned int line_number);
 
+/* This is our memory clean up program */
 void clean(stack_t **stack);
 
+/*  This is our program to check file permissions  */
+void checkstream(FILE *stream, const char *filename);
+
+int getpushint(char *arg, unsigned int line_number);
 #endif

@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 {
 	int status;
 	FILE *stream;
+	const char *filename;
 	char *line, *arg;
 	size_t len = 60;
 	ssize_t nread = 0;
@@ -21,24 +22,13 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		/* Our first check will be if we get ./monty and a file */
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	/* If we have the correct number of args we will need to open the file */
 	stream = fopen(argv[1], "r");
-	if (access((const char *)argv[1], R_OK) == -1)
-	{
-		fclose(stream);
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	if (stream == NULL)
-	{
-		fclose(stream);
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	filename = argv[1];
+	if (stream)
+		checkstream(stream, filename);
 	line = malloc(sizeof(char) * 60);
 	if (line == NULL)
 	{
@@ -64,6 +54,5 @@ int main(int argc, char **argv)
 		fclose(stream);
 	if (status == -1)
 		exit(EXIT_FAILURE);
-
 	return (0);
 }

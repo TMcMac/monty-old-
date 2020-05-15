@@ -10,12 +10,11 @@
 
 int opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 {
-	int i = 0, j = 0, k = 0, neg = 0, status;
-	char num[11];
+	int i = 0, status;
 	instruction_t opcodes[] = {
-		{"pall", _pall}, {"push", _push}, {"pint", _pint}, {"pop", _pop},
-		{"add", _add}, {"sub", _sub}, {"div", _div}, {"mul", _mul}, {"nop", _nop}, 
-		{"mod", _mod}, {NULL, NULL}
+		{"pall", _pall}, {"push", _push}, {"pint", _pint},
+		{"pop", _pop}, {"add", _add}, {"sub", _sub}, {"div", _div},
+		{"mul", _mul}, {"nop", _nop}, {"mod", _mod}, {NULL, NULL}
 		/*
 		 * {"swap", swap},
 		*/
@@ -26,23 +25,7 @@ int opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 		{
 			if (strcmp(opcodes[i].opcode, "push") == 0)
 			{
-				while (isdigit(arg[j]) < 1 && arg[j] != 45)
-					j++;
-				if (arg[j] == 45)
-				{
-					neg = 1;
-					j++;
-				}
-				while (arg[j] > 47 && arg[j] < 58 && k < 11)
-				{
-					num[k] = (arg[j]);
-					k++;
-					j++;
-				}
-				status = 0;
-				Ni = atoi(num);
-				if (neg == 1)
-					Ni *= -1;
+				status = getpushint(arg, line_number);
 			}
 			else
 				status = check_exe(stack, line_number, arg);
