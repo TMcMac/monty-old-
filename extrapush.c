@@ -41,7 +41,7 @@ int getpushint(char *arg, unsigned int line_number)
 	else
 	{
 		status = -1;
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 	}
 	return (status);
 }
