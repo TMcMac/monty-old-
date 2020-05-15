@@ -24,3 +24,21 @@ void _pop(stack_t **stack, unsigned int line_number)
 		free(mover);
 	}
 }
+
+/**
+ * _swap - a function to swap the top node and second node in a stack
+ * @stack: a pointer to the top of our stack
+ * @line_number: the line number of the command that called swap
+ */
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = (*stack)->prev;
+	(void) line_number;
+
+	tmp->prev->next = (*stack);
+	tmp->prev = (*stack);
+	(*stack)->prev = tmp->prev;
+	(*stack)->next = tmp;
+	tmp->next = NULL;
+	(*stack) = tmp;
+}

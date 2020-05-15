@@ -1,5 +1,4 @@
 push 500
-push 100
 pall
 div
 pall

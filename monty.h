@@ -43,25 +43,22 @@ typedef struct instruction_s
 int check_exe(stack_t **stack, unsigned int line_number, char *opcode);
 /* This is our program with opecodes struct*/
 int opcode_comp(char *arg, stack_t **stack,  unsigned int line_number);
-/* These are all mover our functions in basic*/
+/* These are all our functions in basic*/
 void _push(stack_t **stack, unsigned int line_number);
-void _pop(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
-
+void _nop(stack_t **stack, unsigned int line_number);
+/* These are the moving programs in coconuts */
+void _swap(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
 /* These are the math functions in thoushaltcount  */
 void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
-
-/* This function does nothing.... why does it exist? */
-void _nop(stack_t **stack, unsigned int line_number);
-
 /* This is our memory clean up program */
 void clean(stack_t **stack);
-
 /*  This is our program to check file permissions  */
 void checkstream(FILE *stream, const char *filename);
 
