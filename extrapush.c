@@ -1,8 +1,10 @@
 #include "monty.h"
 
-/*
- *
- *
+/**
+ * getpushint - helper for push opcode args
+ * @arg: argument from getline
+ * @line_number: line count of given file
+ * Return:  status integer
  */
 
 int getpushint(char *arg, unsigned int line_number)

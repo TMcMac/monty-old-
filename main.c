@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
 	int status;
 	FILE *stream;
-	const char *filename;
+	const char *filename = argv[1];
 	char *line, *arg;
 	size_t len = 60;
 	ssize_t nread = 0;
@@ -26,14 +26,12 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	stream = fopen(argv[1], "r");
-	filename = argv[1];
 	if (stream)
 		checkstream(stream, filename);
 	line = malloc(sizeof(char) * 60);
 	if (line == NULL)
 	{
-		free(line);
-		fclose(stream);
+		freehelper(stream, line);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -48,10 +46,7 @@ int main(int argc, char **argv)
 			break;
 	}
 	clean(&stack);
-	if (line)
-		free(line);
-	if (stream)
-		fclose(stream);
+	freehelper(stream, line);
 	if (status == -1)
 		exit(EXIT_FAILURE);
 	return (0);

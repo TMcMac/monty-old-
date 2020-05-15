@@ -65,5 +65,10 @@ void clean(stack_t **stack);
 /*  This is our program to check file permissions  */
 void checkstream(FILE *stream, const char *filename);
 
+/* This is our program as push opcode helper */
 int getpushint(char *arg, unsigned int line_number);
+
+/* This is our program to free line and stream  */
+void freehelper(FILE *stream, char *line);
+
 #endif
