@@ -9,7 +9,7 @@
     > +++++ +++++ + #t is 116 so this is 110
     > +++++ +++++ + #o is 111 so this is 110
     > +++++ +++++ + #n is 110 and this is 110
-<<<<<<<<< -
+    <<<<<<<<< -
 ]
 > ++ .              # adds 2 for 72 prints H
 > + .               # adds 1 for 111 prints o
