@@ -19,9 +19,9 @@ int check_exe(stack_t **stack, unsigned int line_number, char *opcode)
 
 	if (strcmp(opcode, "pint") == 0)
 	{
-		if ((*stack) == NULL || stack == NULL)
+		if (stack == NULL || (*stack) == NULL)
 		{
-			fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+			dprintf(2, "L%u: can't pint, stack empty\n", line_number);
 			status = -1;
 		}
 		else
@@ -58,7 +58,7 @@ int checkmaths(stack_t **stack, unsigned int line_number, char *opcode)
 {
 	int status = 0;
 
-	if ((*stack) == NULL || stack == NULL || (*stack)->prev == NULL)
+	if (stack == NULL || (*stack) == NULL || (*stack)->prev == NULL)
 	{
 		fprintf(stderr, "L%u: can't %s, stack too short\n", line_number, opcode);
 		status = -1;
@@ -85,7 +85,7 @@ int checkmovers(stack_t **stack, unsigned int line_number, char *opcode)
 	int status = 0;
 	stack_t *a = (*stack);
 
-	if (strcmp(opcode, "pop") == 0 && ((*stack) == NULL || stack == NULL))
+	if ((strcmp(opcode, "pop") == 0) && (stack == NULL || *stack == NULL))
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		status = -1;
