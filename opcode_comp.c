@@ -34,13 +34,17 @@ int opcode_comp(char *arg, stack_t **stack, unsigned int line_number)
 				opcodes[i].f(stack, line_number);
 				return (0);
 			}
-			else
-			{
-				exit(0);
-				return (-1);
-			}
+			/*
+			 *else
+			 *	{
+			 *	exit(0);
+			 *	return (-1);
+			 *	}
+			 */
 		}
 	}
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, arg);
+	/*
+	 *fprintf(stderr, "L%u: unknown instruction %s\n", line_number, arg);
+	 */
 	return (-1);
 }
