@@ -1,0 +1,9 @@
+push 98
+push 100
+pall
+swap
+pall
+pop
+pint
+pop
+pall

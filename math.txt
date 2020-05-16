@@ -1,7 +1,0 @@
-push 500
-pall
-div
-pall
-push 2
-mod
-pall

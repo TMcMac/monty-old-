@@ -6,18 +6,14 @@
  * @line_number: line count for given file
  */
 
-void _add(stack_t **stack, unsigned int line_number)
+void _add(stack_t **stack, unsigned int line_number __attribute__ ((unused)))
 {
 	stack_t *mover = (*stack)->prev;
 	int result = 0;
-	(void) line_number;
 
 	result = ((*stack)->n + mover->n);
 	mover->n = result;
-	mover = mover->next;
-	(*stack) = (*stack)->prev;
-	free(mover);
-
+	_pop(stack, line_number);
 }
 
 /**
@@ -34,9 +30,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 
 	result = ((*stack)->n - mover->n);
 	mover->n = result;
-	mover = mover->next;
-	(*stack) = (*stack)->prev;
-	free(mover);
+	_pop(stack, line_number);
 }
 
 /**
@@ -53,10 +47,7 @@ void _div(stack_t **stack, unsigned int line_number)
 
 	result = (mover->n / (*stack)->n);
 	mover->n = result;
-	mover = mover->next;
-	(*stack) = (*stack)->prev;
-	free(mover);
-
+	_pop(stack, line_number);
 }
 
 /**
@@ -73,10 +64,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 
 	result = ((*stack)->n * mover->n);
 	mover->n = result;
-	mover = mover->next;
-	(*stack) = (*stack)->prev;
-	free(mover);
-
+	_pop(stack, line_number);
 }
 
 /**
@@ -93,8 +81,5 @@ void _mod(stack_t **stack, unsigned int line_number)
 
 	result = (mover->n % (*stack)->n);
 	mover->n = result;
-	mover = mover->next;
-	(*stack) = (*stack)->prev;
-	free(mover);
-
+	_pop(stack, line_number);
 }
