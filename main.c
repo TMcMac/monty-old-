@@ -10,11 +10,11 @@ int Ni;
 
 int main(int argc, char **argv)
 {
-	int status;
 	FILE *stream;
+	int status;
 	const char *filename = argv[1];
 	char *line, *arg;
-	size_t len = 60;
+	size_t len; /*change to just declaration */
 	ssize_t nread = 0;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
@@ -29,14 +29,14 @@ int main(int argc, char **argv)
 	if (stream)
 		checkstream(stream, filename);
 	line = malloc(sizeof(char) * 60);
-	if (line == NULL)
-	{
-		freehelper(stream, line);
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	while ((nread = getline(&line, &len, stream) != -1))
 	{
+		if (line == NULL)
+		{
+			freehelper(stream, line);
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
 		line_number++;
 		arg = strtok(line, delimit);
 		if (arg)
